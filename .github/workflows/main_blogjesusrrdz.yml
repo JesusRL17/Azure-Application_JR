@@ -32,6 +32,7 @@ jobs:
           sudo apt-get install -y unixodbc-dev
           sudo apt-get install build-essential libffi-dev unixodbc-dev
           sudo apt install libcairo2-dev pkg-config python3-dev
+          pip3 install --user pyodbc
       
       - name: Install dependencies
         run: pip install -r requirements.txt
