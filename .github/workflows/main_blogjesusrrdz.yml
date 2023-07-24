@@ -28,13 +28,12 @@ jobs:
           source venv/bin/activate
       - name: Install dependencies
         run: |
-          sudo apt-get install python3.8-dev
+          sudo apt-get install python3.11-dev
           pip install --upgrade pip
+          pip install pyodbc
           sudo apt-get update
-          sudo apt-get install -y unixodbc-dev
           sudo apt-get install build-essential libffi-dev unixodbc-dev
           sudo apt install libcairo2-dev pkg-config python3-dev
-          pip3 install --user pyodbc
       
       - name: Install dependencies
         run: pip install -r requirements.txt
