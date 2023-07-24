@@ -28,6 +28,7 @@ jobs:
           source venv/bin/activate
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           sudo apt-get update
           sudo apt-get install -y unixodbc-dev
           sudo apt-get install build-essential libffi-dev unixodbc-dev
