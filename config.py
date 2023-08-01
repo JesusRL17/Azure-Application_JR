@@ -32,7 +32,7 @@ class Config(object):
 
     CLIENT_ID = "bf86cb47-4371-46b0-97ab-18c4a99ff28d"
 
-    REDIRECT_PATH = "/login/callback"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
+    REDIRECT_PATH = "https://jesusrdzblog.azurewebsites.net/login/callback"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
 
     # You can find the proper permission names from this document
     # https://docs.microsoft.com/en-us/graph/permissions-reference
