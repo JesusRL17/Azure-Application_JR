@@ -18,8 +18,8 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     ### Info for MS Authentication ###
-    ### As adapted from: https://github.com/Azure-Samples/ms-identity-python-webapp ###
-    CLIENT_SECRET = "Sr.8Q~CcbYMOVGMxI8ybED2diTVYY8ivSsKdYcFk"
+    ### As adapted from: https://github.com/Azure-Samples/ms-identity-python-webapp ### VDq8Q~jESZ7zNLJodeiQ3pEiVybcLJzpj1qfUdq6
+    CLIENT_SECRET = "593d2970-70ef-4e5b-906a-ff493bcfb9a8"
     # In your production app, Microsoft recommends you to use other ways to store your secret,
     # such as KeyVault, or environment variable as described in Flask's documentation here:
     # https://flask.palletsprojects.com/en/1.1.x/config/#configuring-from-environment-variables
@@ -30,9 +30,9 @@ class Config(object):
     AUTHORITY = "https://login.microsoftonline.com/common"  # For multi-tenant app, else put tenant name
     # AUTHORITY = "https://login.microsoftonline.com/Enter_the_Tenant_Name_Here"
 
-    CLIENT_ID = "bf86cb47-4371-46b0-97ab-18c4a99ff28d"
+    CLIENT_ID = "f35d1731-384e-4d89-9412-c9bed8bc205b"
 
-    REDIRECT_PATH = "https://jesusrdzblog.azurewebsites.net/login/callback"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
+    REDIRECT_PATH = "/login/callback"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
 
     # You can find the proper permission names from this document
     # https://docs.microsoft.com/en-us/graph/permissions-reference
