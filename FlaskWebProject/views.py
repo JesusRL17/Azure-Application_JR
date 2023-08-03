@@ -89,7 +89,7 @@ def authorized():
         result = _build_msal_app(cache=cache).acquire_token_by_authorization_code(
             request.args['code'],
             scopes=Config.SCOPE,  # Misspelled scope would cause an HTTP 400 error here
-            redirect_uri=url_for("authorized", _external=True))
+            redirect_uri=url_for("authorized", _external=True, _scheme="https"))
         if "error" in result:
             app.logger.error('There is an error obtaining token')
             return render_template("auth_error.html", result=result)
