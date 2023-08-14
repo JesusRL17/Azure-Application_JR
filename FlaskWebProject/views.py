@@ -37,6 +37,7 @@ def new_post():
     if form.validate_on_submit():
         post = Post()
         post.save_changes(form, request.files['image_path'], current_user.id, new=True)
+        app.logger.debug('New Data saved')
         return redirect(url_for('home'))
     return render_template(
         'post.html',
@@ -53,6 +54,7 @@ def post(id):
     form = PostForm(formdata=request.form, obj=post)
     if form.validate_on_submit():
         post.save_changes(form, request.files['image_path'], current_user.id)
+        app.logger.debug('New Data saved')
         return redirect(url_for('home'))
     return render_template(
         'post.html',
