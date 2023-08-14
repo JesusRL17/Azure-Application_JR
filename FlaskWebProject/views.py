@@ -37,7 +37,7 @@ def new_post():
     if form.validate_on_submit():
         post = Post()
         post.save_changes(form, request.files['image_path'], current_user.id, new=True)
-        app.logger.debug('New Data saved')
+        app.logger.info('New Data saved')
         return redirect(url_for('home'))
     return render_template(
         'post.html',
@@ -54,7 +54,7 @@ def post(id):
     form = PostForm(formdata=request.form, obj=post)
     if form.validate_on_submit():
         post.save_changes(form, request.files['image_path'], current_user.id)
-        app.logger.debug('New Data saved')
+        app.logger.info('New Data saved')
         return redirect(url_for('home'))
     return render_template(
         'post.html',
@@ -65,23 +65,23 @@ def post(id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    app.logger.debug('login process initiated!')
+    app.logger.info('login process initiated!')
     if current_user.is_authenticated:
-        app.logger.debug('login success')
+        app.logger.info('login success')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            app.logger.debug('Log in unsuccesfull')
+            app.logger.info('Log in unsuccesfull')
             return redirect(url_for('login'))
-        app.logger.debug('Successful login')    
+        app.logger.info('Successful login')    
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
-            app.logger.debug('Log in succesfull')
+            app.logger.info('Log in succesfull')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
