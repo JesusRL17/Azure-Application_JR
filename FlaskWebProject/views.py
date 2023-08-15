@@ -12,9 +12,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 from FlaskWebProject.models import User, Post
 import msal
 import uuid
-import logging
-
-
 
 imageSourceUrl = 'https://'+ app.config['BLOB_ACCOUNT']  + '.blob.core.windows.net/' + app.config['BLOB_CONTAINER']  + '/'
 
@@ -65,7 +62,6 @@ def post(id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    app.logger.info('login process initiated!')
     if current_user.is_authenticated:
         app.logger.info('login success')
         return redirect(url_for('home'))
@@ -75,13 +71,16 @@ def login():
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             app.logger.info('Log in unsuccesfull')
+            app.logger.warning('Log in unsuccesfull')
             return redirect(url_for('login'))
-        app.logger.info('Successful login')    
+        app.logger.info('Successful login')  
+        app.logger.warning('Log in succesfull')  
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
-            app.logger.info('Log in succesfull')
+            app.logger.warning('Log in unsuccesfull')
+            app.logger.warning('Log in unsuccesfull')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
@@ -107,6 +106,8 @@ def authorized():
         user = User.query.filter_by(username="admin").first()
         login_user(user)
         _save_cache(cache)
+        app.logger.warning('URI Redirect Log in succesfull')
+
     return redirect(url_for('home'))
 
 @app.route('/logout')
